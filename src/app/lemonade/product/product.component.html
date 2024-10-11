@@ -1,0 +1,8 @@
+<div class="styled-product">
+    <!-- Getting name variable from product.ts input() function. The value is passed from lemonade compoment html. -->
+    <h2 class="product-name">{{name}}</h2>
+    <!-- this handleIncrement is passed/emit to lemonade component -->
+    <button class="decrement-button" (click)="handleDecrement()">-</button>
+    <h3>{{amount | convertMeasurement: unit}}</h3>
+    <button class="increment-button" (click) ="handleIncrement()">+</button>
+</div>
