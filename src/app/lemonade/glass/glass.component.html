@@ -1,10 +1,12 @@
-<div class="background glass-div">
-    <div class="glass-back glass-div">
-        <div class="glass-front glass-div">
+<!-- This {{ classNames }} input is created on glass component, so whenever other component wants to render this glass component,
+ they can pass a class name based on if the glass is big or small and thus apply appropriate styling to it. -->
+<div class="background glass-div {{ classNames }}">
+    <div class="glass-back glass-div {{ classNames }}">
+        <div class="glass-front glass-div {{classNames}}">
             <app-liquid
-            [percentLemonJuiceLiquid]="percentLemonJuice"
-            [percentSugarLiquid]="percentSugar"
-            [numberOfIceCubesLiquid]="numberOfIceCubes"
+                [percentLemonJuiceLiquid]="percentLemonJuice"
+                [percentSugarLiquid]="percentSugar"
+                [numberOfIceCubesLiquid]="numberOfIceCubes"
             ></app-liquid>
         </div>
     </div>

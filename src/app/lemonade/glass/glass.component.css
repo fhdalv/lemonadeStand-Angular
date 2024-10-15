@@ -23,3 +23,13 @@
     position: relative;
     overflow: hidden;
 }
+
+.glass-front.small {
+    height: 165px;
+    width: 100px;
+}
+
+.background.small {
+    height: 175px;
+    width: 115px;
+}

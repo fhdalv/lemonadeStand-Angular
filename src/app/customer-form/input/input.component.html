@@ -1,0 +1,22 @@
+<ng-container>
+    <!-- this 'control' variable is coming from the @Input() created on the ts file of this component.-->
+     
+    <label for="control">{{label}}:</label>
+    <div>
+        <input type="text" class="input-style field" [formControl]="control"  name="control"/>
+    </div>
+    <!-- inside ng-container we check if name field has any initial error then we move on to the div inside. -->
+             <!-- .touched is if user click on the input name field and click out without typing anything,
+              only then the error message will show instead of showing at the beginning by default -->
+    <ng-container *ngIf="control.touched && control.errors">
+        <div *ngIf="control.errors['required']" class="error">{{label}} is required</div>
+        
+        <div *ngIf="control.errors['minlength']" class="error">The {{label}} you provided is 
+            {{control.errors['minlength'].actualLength}} but it must be 
+            {{control.errors['minlength'].requiredLength}}</div>
+
+        <div *ngIf="control.errors['maxlength']" class="error">The {{label}} you provided is 
+            {{control.errors['maxlength'].actualLength}} but it cannot exceed
+            {{control.errors['maxlength'].requiredLength}}</div>
+    </ng-container>
+</ng-container>

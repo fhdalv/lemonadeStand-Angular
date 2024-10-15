@@ -17,6 +17,12 @@
             (incrementProductByName)="increment(product.name)"
             (decrementProductByName)="decrement(product.name)"
             ></app-product>
+            <button class="add-cart" (click) = "addToCart()">Add to Cart</button>
     </app-card>
 </div>
+<!-- Rendering Cart Component -->
+    <app-cart *ngIf="cartShown" [lemonades]="cartLemonades" (secondPassLemonadeIdEvent)="removeFromCart($event)"></app-cart>
+<!-- Rendering small cart icon component -->
+    <app-cart-icon *ngIf="!cartShown" (click) = "toggleCart()"></app-cart-icon>
+    <div class="backdrop" *ngIf="cartShown" (click) = "toggleCart()"></div>
 

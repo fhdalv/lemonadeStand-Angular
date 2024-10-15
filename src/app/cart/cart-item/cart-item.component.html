@@ -1,0 +1,14 @@
+<div class="lemonade">
+    <!-- Passing the small value as input in classNames function of glass.component.ts -->
+    <app-glass [classNames]="'small'"
+    [percentLemonJuice] ="100 - (lemonade.lemonJuice / 10) * 100"
+    [percentSugar]="100 - (lemonade.sugar / 8) * 30"
+    [numberOfIceCubes]="lemonade.iceCubes"></app-glass>
+    <div class="lemonade-text">
+        <span>Lemon Juice: {{lemonade.lemonJuice}}</span>
+        <span>Sugar:{{lemonade.sugar}}</span>
+        <span>Ice:{{lemonade.iceCubes}}</span>
+        <span>Price:{{lemonade.price | currency: "USD"}}</span>
+    </div>
+    <button class="remove" (click)="(passLemonadeId(lemonade.id))">Remove</button>
+</div>

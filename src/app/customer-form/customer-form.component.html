@@ -1,0 +1,65 @@
+<div class="container">
+    <div>
+        <h1>Hi there! Please provide the required info to get started:</h1>
+        <!-- Adding formGroup to this form tag. and adding formControlName to the inputs to bind that to
+         the 'name' variable of formControl in ts file and pass it to customerForm Group -->
+        <form class="form-box" [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+            <!-- <label for="name">Name: (First & Last)</label>
+            <input type="text" name="name" class="input-style" formControlName="name"/> -->
+            <!-- inside ng-container we check if name field has any initial error then we move on to the div inside. -->
+             <!-- .touched is if user click on the input name field and click out without typing anything,
+              only then the error message will show instead of showing at the beginning by default -->
+            <!-- <ng-container *ngIf="customerForm.controls['name'].touched && customerForm.controls['name'].errors">
+                <div *ngIf="customerForm.controls['name'].errors['required']" class="error">Name is required</div>
+                <div *ngIf="customerForm.controls['name'].errors['minlength']" class="error">The name you provided is 
+                    {{customerForm.controls['name'].errors['minlength'].actualLength}} but it must be at least
+                    {{customerForm.controls['name'].errors['minlength'].requiredLength}} characters.</div>
+            </ng-container> -->
+
+            <!-- Same as above -->
+            <app-input [control] ="$any(customerForm.controls['name'])" label="Name"></app-input>
+
+            <!-- Same as below -->
+            <app-input [control]="$any(customerForm.get('phoneNumber'))" label="Phone Number"></app-input>
+<!-- 
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" name="phoneNumber" class="input-style" formControlName="phoneNumber"/>
+            <ng-container *ngIf="customerForm.controls['phoneNumber'].touched && customerForm.controls['phoneNumber'].errors">
+                <div *ngIf="customerForm.controls['phoneNumber'].errors['required']" class="error">Phone number is required</div>
+                <div *ngIf="customerForm.controls['phoneNumber'].errors['minlength']" class="error">The phone number you provided is 
+                    {{customerForm.controls['phoneNumber'].errors['minlength'].actualLength}} but it must be 
+                    {{customerForm.controls['phoneNumber'].errors['minlength'].requiredLength}}</div>
+                    <div *ngIf="customerForm.controls['phoneNumber'].errors['maxlength']" class="error">The phone number you provided is 
+                        {{customerForm.controls['phoneNumber'].errors['maxlength'].actualLength}} but it cannot exceed
+                        {{customerForm.controls['phoneNumber'].errors['maxlength'].requiredLength}}</div>
+            </ng-container> -->
+
+            <label for="lemonadeStand">Which lemonadeStand are you ordering from today?</label>
+            <select name="lemonadeStand" class="input-style" formControlName="selectedStand">
+                <option [ngValue]="undefined">Select a Lemonade Stand</option>
+                <option *ngFor="let lemonadeStand of lemonadeStands" [ngValue]="lemonadeStand">
+                    {{lemonadeStand.name}}
+                </option>
+            </select>
+            <ng-container *ngIf="customerForm.controls['selectedStand'].touched && customerForm.controls['selectedStand'].errors">
+                <div *ngIf="customerForm.controls['selectedStand'].errors['required']" class="error">Lemonade stand is required</div>
+
+            </ng-container>
+
+            <button class="yellow-button" [disabled]="customerForm.invalid" [ngClass]="customerForm.invalid? 'disabled' : ''">Start Your Order</button>
+        </form>
+    </div>
+</div>
+
+<!-- To view how formControl works -->
+<!-- <div class="container">
+    <p>Name: {{customerForm.controls['name'].value}}</p>
+    <p>Phone Number: {{customerForm.controls['phoneNumber'].value}}</p>
+    the | json below means to show the actual object value to the screen -->
+    <!-- <p>Lemonade Stand Name: {{customerForm.controls['selectedStand'].value | json}}</p>
+</div> -->
+
+
+<div class="container">
+    <p>Name error: {{customerForm.controls['name'].errors | json}}</p>
+</div>

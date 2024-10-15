@@ -14,4 +14,5 @@ export class GlassComponent {
   @Input() percentSugar: number = 0
   @Input() numberOfIceCubes: number = 0
 
+  @Input() classNames: string = '';
 }
