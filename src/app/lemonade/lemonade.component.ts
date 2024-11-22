@@ -5,6 +5,9 @@ import { NgFor, NgIf } from '@angular/common';
 import { GlassComponent } from "./glass/glass.component";
 import { CartComponent } from "../cart/cart.component";
 import { CartIconComponent } from './cart-icon/cart-icon.component';
+import LemonadeStand from '../models/LemonadeStand';
+import { CartService } from '../cart.service';
+import { Router } from '@angular/router';
 
 interface Product {
   name: string,
@@ -93,6 +96,22 @@ export class LemonadeComponent implements OnInit{
   }
   cartShown: boolean = false;
 
+  customerName: string = ''
+  customerPhoneNumber: string = ''
+  selectedStand: LemonadeStand | undefined = undefined
+  
+  constructor(private cartData: CartService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.cartData.customerName.subscribe(customerName => this.customerName = customerName)
+    this.cartData.customerPhoneNumber.subscribe(customerPhoneNumber => this.customerPhoneNumber = customerPhoneNumber)
+    this.cartData.selectedStand.subscribe(selectedStand => this.selectedStand = selectedStand)
+    
+    if(!this.customerName || !this.customerPhoneNumber || !this.selectedStand){
+      this.router.navigateByUrl('/')
+    }
+  }
+
   toggleCart() {
     this.cartShown = !this.cartShown
   }
@@ -154,10 +173,5 @@ export class LemonadeComponent implements OnInit{
       this.cartLemonades.splice(itemIndex, 1);
     }
   }
-
-  ngOnInit(): void { 
-  }
-
-
 
 }

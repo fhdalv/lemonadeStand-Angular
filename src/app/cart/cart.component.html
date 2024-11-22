@@ -12,7 +12,7 @@
         </div>
         <h2 class="blue">Total Price: {{totalPrice | currency: "USD"}}</h2>
     </div>
-    <div class="form-container eighty-percent">
+    <!-- <div class="form-container eighty-percent">
         <select class="input-style one-hundred-percent">
             <option disabled selected>Select a Lemonade Stand</option>
             <option>Stand 1</option>
@@ -21,5 +21,20 @@
         <a>
             <button class="yellow-button font">Place Order</button>
         </a>
-    </div>
+    </div> -->
+
+    <!-- copied from customer form -->
+    <form class="form-container eighty-percent" [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+        
+        <select name="lemonadeStand" 
+        class="input-style one-hundred-percent" 
+        formControlName="selectedStand"
+        (change)="updateSelectedStand()"
+        >
+            <option *ngFor="let lemonadeStand of lemonadeStands" [ngValue]="lemonadeStand">
+                {{lemonadeStand.name}}
+            </option>
+        </select>
+        <button class="yellow-button" >Place Order</button>
+    </form>
 </div>
